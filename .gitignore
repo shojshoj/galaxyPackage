@@ -3,6 +3,7 @@ stitch.py
 nightruns.sh
 bootcamp/
 galaxyData/
+env/
 *.png
 *.swp
 *.pyc

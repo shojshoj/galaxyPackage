@@ -29,22 +29,22 @@ def dataGen(f):
 		if 'modelMag_u' in data.dtype.names:
 			if 'Column1' in data.dtype.names:
 				for i in range(len(data['objID'])):
-					galaxies[int(data['objID'][i])] = galaxy(int(data['objID'][i]), data['ra'][i], data['dec'][i], data['z'][i], 0., 0., data['bpt'][i], u=data['modelMag_u'][i], r=data['modelMag_r'][i], nearby=(int(data['Column1'][i])-1))
+					galaxies[int(data['objID'][i])] = galaxy(int(data['objID'][i]), data['ra'][i], data['dec'][i], data['z'][i], data['redshift'][i], 0., 0., data['bpt'][i], u=data['modelMag_u'][i], r=data['modelMag_r'][i], nearby=(int(data['Column1'][i])-1))
 					bar.update()
 			# Exclude number of nearby neighbors if it is not present
 			else:
 				for i in range(len(data['objID'])):
-					galaxies[int(data['objID'][i])] = galaxy(int(data['objID'][i]), data['ra'][i], data['dec'][i], data['z'][i], 0., 0., data['bpt'][i], u=data['modelMag_u'][i], r=data['modelMag_r'][i])
+					galaxies[int(data['objID'][i])] = galaxy(int(data['objID'][i]), data['ra'][i], data['dec'][i], data['z'][i], data['redshift'][i], 0., 0., data['bpt'][i], u=data['modelMag_u'][i], r=data['modelMag_r'][i])
 					bar.update()
 		else:
 			if 'Column1' in data.dtype.names:
 				for i in range(len(data['objID'])):
-					galaxies[int(data['objID'][i])] = galaxy(int(data['objID'][i]), data['ra'][i], data['dec'][i], data['z'][i], 0., 0., data['bpt'][i],  nearby=(int(data['Column1'][i])-1))
+					galaxies[int(data['objID'][i])] = galaxy(int(data['objID'][i]), data['ra'][i], data['dec'][i], data['z'][i], data['redshift'][i], 0., 0., data['bpt'][i],  nearby=(int(data['Column1'][i])-1))
 					bar.update()
 			# Exclude number of nearby neighbors if it is not present
 			else:
 				for i in range(len(data['objID'])):
-					galaxies[int(data['objID'][i])] = galaxy(int(data['objID'][i]), data['ra'][i], data['dec'][i], data['z'][i], 0., 0., data['bpt'][i])
+					galaxies[int(data['objID'][i])] = galaxy(int(data['objID'][i]), data['ra'][i], data['dec'][i], data['z'][i], data['redshift'][i], 0., 0., data['bpt'][i])
 					bar.update()
 	# This works slightly different when we want to get IDs of nearby galaxies
 	else:
@@ -56,9 +56,9 @@ def dataGen(f):
 				if objid in galaxies:
 					nearby_gals.append(nearID)
 				else:
-					galaxies[objid] = galaxy(objid, data['ra'][i], data['dec'][i], data['z'][i], 0., 0., data['bpt'][i])
+					galaxies[objid] = galaxy(objid, data['ra'][i], data['dec'][i], data['z'][i], data['redshift'][i], 0., 0., data['bpt'][i])
 			elif not objid in galaxies:
-				galaxies[objid] = galaxy(objid, data['ra'][i], data['dec'][i], data['z'][i], 0., 0., data['bpt'][i])
+				galaxies[objid] = galaxy(objid, data['ra'][i], data['dec'][i], data['z'][i], data['redshift'][i], 0., 0., data['bpt'][i])
 			if i >= len(data['objID']) - 1 or data['objID'][i] != data['objID'][i+1]:
 				galaxies[objid].nearbyIDs = nearby_gals
 				nearby_gals = []

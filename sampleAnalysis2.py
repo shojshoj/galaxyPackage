@@ -6,7 +6,7 @@ from galaxy.densityplot import densityPlot
 from galaxy.nearbyhist import nearbyHist
 
 # Grab the data to create our dictionary
-galaxies = dataGen('galaxyData/nearby_gals_2.csv')
+galaxies = dataGen('galaxyData.csv')
 #galaxies = dataGen('galaxyData/galaxy_sample_2.csv')
 #sampleGalaxy = 1237645879578460271
 #for key in galaxies:
@@ -24,7 +24,7 @@ print("Generated 'galaxies' dictionary")
 # print("Lowest redshift galaxy is", keys[redshifts.index(min(redshifts))])
 
 # Divide into red and blue subsections
-divideSample(galaxies, 'galaxyData/galaxy_sample_2.csv')
+divideSample(galaxies, 'galaxyData.csv')
 #print("Created blue_file and red_file")
 
 # Count each type and total number of AGNs
